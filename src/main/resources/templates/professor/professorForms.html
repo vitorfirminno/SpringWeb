@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Professor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #666;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            font-size: 16px;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .btn {
+            display: inline-block;
+            padding:10px;
+            margin: 2px;
+            text-decoration: none;
+            color: white;
+            border-radius: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+         .btn-return{
+        	background-color: #FF0000;
+        	font-size: 16px;
+            padding: 10px 20px;
+        }
+                
+        .btn:hover {
+            opacity: 0.8;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form th:object="${professorDTO}" action="/professor/gravar" method="post">
+        <h1>Cadastro de Professor</h1>
+        
+        <!-- <label for="id">ID do Professor:</label> -->
+        <input type="hidden" id="id" th:field="*{id}" readonly style="background-color: #eee;">
+        
+        <label for="nome">Nome do Professor:</label>
+        <input type="text" th:field="*{nome}" >
+        <div>
+        	<p th:if="${#fields.hasErrors('nome')}">Nome não pode ser nulo/branco</p>
+        </div>
+        
+        <label for="cpf">CPF do Professor:</label>
+        <input type="text" th:field="*{cpf}" >
+          <div>
+        	<p th:if="${#fields.hasErrors('cpf')}">formato de CPF inválido!</p>
+        </div>
+        
+        <input type="submit" value="Cadastrar Professor">
+         <div class="button-container">
+    <a th:href="@{/professor/listar}" class="btn btn-return">Retornar</a>
+    </div>
+    </form>
+</body>
+</html>
