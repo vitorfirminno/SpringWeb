@@ -6,6 +6,7 @@ import br.sp.senai.springweb.model.Professor;
 import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class ProfessorDTO {
 	private Long id;	
@@ -17,6 +18,9 @@ public class ProfessorDTO {
 	//@Pattern(regexp = "[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}", message = "CPF Inválido")
 	@CPF
 	private String cpf;
+	
+	/*@Size(min = 0, max = 10000)
+	private Float salario;*/
 	
 	public ProfessorDTO() {
 		

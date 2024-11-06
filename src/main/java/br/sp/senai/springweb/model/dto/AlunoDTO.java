@@ -1,5 +1,9 @@
 package br.sp.senai.springweb.model.dto;
 
+import java.util.Set;
+
+import org.hibernate.validator.constraints.br.CPF;
+
 import br.sp.senai.springweb.model.Aluno;
 import jakarta.annotation.Nonnull;
 import jakarta.validation.constraints.NotBlank;
@@ -10,7 +14,13 @@ public class AlunoDTO {
 	@Nonnull
 	@NotBlank
 	private String nome;
+	
+	@CPF
 	private String cpf;
+	
+	
+	private Set<AvaliacaoDTO> avaliacoes;
+	
 	
 	public Long getId() {
 		return id;
@@ -36,6 +46,16 @@ public class AlunoDTO {
 		this.cpf = cpf;
 	}
 	
+	
+	
+	public Set<AvaliacaoDTO> getAvaliacoes() {
+		return avaliacoes;
+	}
+
+	public void setAvaliacoes(Set<AvaliacaoDTO> avaliacoes) {
+		this.avaliacoes = avaliacoes;
+	}
+
 	public Aluno toAluno() {
 		Aluno a = new Aluno();
 		a.setId(this.id);

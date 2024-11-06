@@ -90,8 +90,11 @@
         <input th:field="*{nome}" type="text"/>
         <label>CPF:</label>
         <input th:field="*{cpf}" type="text"/>
+        <div>
+        	<p th:if="${#fields.hasErrors('cpf')}">formato de CPF inválido!</p>
+        </div>
         
-        <input type="submit" value="Cadastrar Professor">
+        <input type="submit" value="Cadastrar aluno">
      <div class="button-container">
     <a th:href="@{/aluno/listar}" class="btn btn-return">Retornar</a>
     </div>

@@ -55,6 +55,9 @@
         .btn-edit {
             background-color: #FFA500;
         }
+       	.btn-det{
+       		background-color: #4CAF50;
+       	}
         .btn-delete {
             background-color: #FF0000;
         }
@@ -97,6 +100,7 @@
                 <td th:text="${aluno.nome}"></td>
                 <td th:text="${aluno.cpf}"></td>
                 <td>
+                	<a th:href="@{/aluno/detalhar/{id}(id=${aluno.id})}" class="btn btn-det">Detalhar</a>
                     <a th:href="@{/aluno/editar/{id}(id=${aluno.id})}" class="btn btn-edit">Editar</a>
                     <a th:href="@{/aluno/deletar/{id}(id=${aluno.id})}" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja remover este aluno?')">Deletar</a>
                 </td>

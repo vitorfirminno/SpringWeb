@@ -1,11 +1,14 @@
 package br.sp.senai.springweb.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name= "tb_professores")
 public class Professor {
 
 		@Id
@@ -13,6 +16,7 @@ public class Professor {
 		private Long id;
 		
 		private String nome;
+		@Column(length = 120, nullable = false) // varchar(120) is not null
 		private String cpf;
 		
 	public Professor() {	

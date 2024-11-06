@@ -1,6 +1,7 @@
 package br.sp.senai.springweb.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,9 +51,15 @@ public class ProfessorController {
 	}
 	
 	  @GetMapping("/editar/{id}")
-	    public String editar(@PathVariable Long id, Model model) {
-	        Professor professor = professorRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("ID inválido: " + id));
-	        model.addAttribute("professor", professor);
+	    public String editar(@PathVariable Long id, ProfessorDTO professorDto ) {
+	        Optional<Professor> tmp = professorRepository.findById(id);
+	        if (tmp.isPresent()) {
+				Professor p = tmp.get();
+				
+				professorDto.setId(id);
+				professorDto.setNome(p.getNome());
+				professorDto.setCpf(p.getCpf());
+			}
 	        return "professor/professorForms"; 
 	    }
 	

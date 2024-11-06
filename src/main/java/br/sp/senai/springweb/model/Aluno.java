@@ -1,9 +1,15 @@
 package br.sp.senai.springweb.model;
 
+
+import java.util.HashSet;
+import java.util.Set;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Aluno {
@@ -13,6 +19,9 @@ public class Aluno {
 	
 	private String nome;
 	private String cpf;
+	
+	@OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)
+	private Set<Avaliacao>  avaliacoes = new HashSet<Avaliacao>();
 	
 	public Aluno() {}
 
@@ -38,6 +47,14 @@ public class Aluno {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public Set<Avaliacao> getAvaliacoes() {
+		return avaliacoes;
+	}
+
+	public void setAvaliacoes(Set<Avaliacao> avaliacoes) {
+		this.avaliacoes = avaliacoes;
 	}
 
 	
