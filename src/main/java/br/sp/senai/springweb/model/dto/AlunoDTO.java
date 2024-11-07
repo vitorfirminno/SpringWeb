@@ -1,5 +1,6 @@
 package br.sp.senai.springweb.model.dto;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.validator.constraints.br.CPF;
@@ -19,7 +20,7 @@ public class AlunoDTO {
 	private String cpf;
 	
 	
-	private Set<AvaliacaoDTO> avaliacoes;
+	private Set<AvaliacaoDTO> avaliacoes = new HashSet<>();
 	
 	
 	public Long getId() {

@@ -1,6 +1,7 @@
 package br.sp.senai.springweb.controller;
 
 import br.sp.senai.springweb.model.Aluno;
+import br.sp.senai.springweb.model.Avaliacao;
 import br.sp.senai.springweb.model.dto.AlunoDTO;
 import br.sp.senai.springweb.model.dto.AvaliacaoDTO;
 import br.sp.senai.springweb.repository.AlunoRepository;
@@ -93,13 +94,13 @@ public class AlunoController {
         	model.addAttribute("aluno", alunoDTO); // Adiciona `alunoDTO` ao modelo
         	
         	
-        	/*for (AvaliacaoDTO av: alunoDTO.getAvaliacoes()) {
-        		AvaliacaoDTO avDTO = new AvaliacaoDTO();
+        	AvaliacaoDTO avDTO = new AvaliacaoDTO();
+        	for (Avaliacao av: alunoDTO.getAvaliacoes()) {
 				avDTO.setId(av.getId());
 				avDTO.setDescricao(av.getDescricao());
 				avDTO.setNota(av.getNota());
         		alunoDTO.getAvaliacoes().add(avDTO);
-			}*/
+			}
         	
         	return "/aluno/alunodet";
         }
