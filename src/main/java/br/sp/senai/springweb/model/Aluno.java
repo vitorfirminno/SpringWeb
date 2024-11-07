@@ -20,7 +20,7 @@ public class Aluno {
 	private String nome;
 	private String cpf;
 	
-	@OneToMany(mappedBy = "aluno", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "aluno", fetch = FetchType.LAZY) //eager gasoso traz em cascata
 	private Set<Avaliacao>  avaliacoes = new HashSet<Avaliacao>();
 	
 	public Aluno() {}

@@ -26,7 +26,7 @@ public class Avaliacao {
 	private Float nota;
 
 	@ManyToOne
-	@JoinColumn(name="aluno_id") //innerjoin chave estrangeira id
+	@JoinColumn(name="aluno_id") //join chave estrangeira id
 	private Aluno aluno;
 	
 	

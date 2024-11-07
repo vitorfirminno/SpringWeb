@@ -78,45 +78,65 @@
         .btn-delete:hover {
             background-color: #c82333;
         }
+        .button-container{
+        	text-align: center;
+            margin-top: 20px;
+            }
+         .btn-return{
+        	background-color: #FF0000;
+        	font-size: 16px;
+            padding: 10px 20px;
+            
+        }
+        
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Detalhes do Aluno</h1>
         
-        <div class="student-info" th:each="aluno : ${alunos}">
+        <div class="student-info" th:object="${aluno}">
             <p><strong>Nome:</strong> <span th:text="${aluno.nome}"></span></p>
             <p><strong>CPF:</strong> <span th:text="${aluno.cpf}"></span></p>
-            <p><strong>Telefone:</strong> <span th:text="${aluno.telefone}"></span></p>
+    
         </div>
+        
         
         <a th:href="@{/aluno/{id}/nova-nota(id=${aluno.id})}" class="btn btn-new">Nova Nota</a>
         
         <h2>Notas do Aluno</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Descrição</th>
-                    <th>Nota</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="avaliacao : ${avaliacoes}">
-                    <td th:text="${avaliacao.id}"></td>
-                    <td th:text="${avaliacao.descricao}"></td>
-                    <td th:text="${avaliacao.valor}"></td>
-                    <td>
-                        <a th:href="@{/aluno/{alunoId}/nota/{notaId}/alterar(alunoId=${aluno.id},notaId=${nota.id})}" class="btn btn-edit">Alterar</a>
-                        <a th:href="@{/aluno/{alunoId}/nota/{notaId}/excluir(alunoId=${aluno.id},notaId=${nota.id})}" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta nota?')">Excluir</a>
-                    </td>
-                </tr>
-                <tr th:if="${#lists.isEmpty(aluno.notas)}">
-                    <td colspan="4" style="text-align: center;">Nenhuma nota cadastrada para este aluno.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+	        <table>
+	            <thead>
+	                <tr>
+	                    <th>ID</th>
+	                    <th>Descrição</th>
+	                    <th>Nota</th>
+	                    <!-- <th>Ações</th>-->
+	                </tr>
+	            </thead>
+	            <tbody>
+	                <tr th:each="avaliacao : ${aluno.avaliacoes}">
+	                    <td th:text="${avaliacao.id}"></td>
+	                    <td th:text="${avaliacao.descricao}"></td>
+	                    <td th:text="${avaliacao.nota}"></td>
+	                    
+	                    <!-- <td>
+	                        <a th:href="@{/aluno/{alunoId}/nota/{notaId}/alterar(alunoId=${aluno.id},notaId=${nota.id})}" class="btn btn-edit">Alterar</a>
+	                        <a th:href="@{/aluno/{alunoId}/nota/{notaId}/excluir(alunoId=${aluno.id},notaId=${nota.id})}" class="btn btn-delete" onclick="return confirm('Tem certeza que deseja excluir esta nota?')">Excluir</a>
+	                    </td>  
+	                    -->
+	                </tr>
+	                <tr th:if="${#lists.isEmpty(aluno.avaliacoes)}">
+	                    <td colspan="4" style="text-align: center;">Nenhuma nota cadastrada para este aluno.</td>
+	                </tr>
+	            </tbody>
+	        </table>
+	   </div>
     </div>
+	    <div class="button-container">
+   		 	<a th:href="@{/aluno/listar}" class="btn btn-return">Retornar</a>
+    	</div>
+    
 </body>
 </html>
